@@ -1,0 +1,11 @@
+.landing-page {
+  height: 1000px;
+  background-image: url('/assets/bg-masthead.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  color: #fff;
+  text-align: center;
+  padding: 100px;
+}

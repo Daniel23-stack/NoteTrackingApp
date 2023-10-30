@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">NotesAPP</a>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-outline-info" routerLink="/notes/create">Create Note</button>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="d-grid gap-4 d-md-block">
+
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <h2 class="text-center">Notes</h2>
+  <hr>
+</div>
+<section class="mt-4">
+  <div class="container-sm" >
+    <table class="table mt-4 table-striped " >
+      <thead >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Note Name</th>
+        <th scope="col">Note Content</th>
+        <th scope="col">Actions</th>
+      </tr >
+      </thead>
+      <tbody >
+
+      <tr *ngFor="let note of notes">
+        <th scope="row">{{note.id}}</th>
+        <td>{{note.title}}</td>
+        <td>{{note.content}}</td>
+        <td>
+          <div class="d-grid gap-2 d-md-flex">
+            <a [routerLink]="['/note-viewer', note.id]" class="btn btn-outline-info">View</a>
+            <a [routerLink]="['/notes/edit', note.id]" class="btn btn-primary">Edit</a>
+            <a (click)="onSaveToDrive()" class="btn btn-outline-info">Save to Drive</a>
+            <button class="btn btn-danger" (click)="note.id && onDeleteClick(note.id)"  type="button">Delete</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Modal -->
+<div *ngFor="let note of notes">
+<div class="modal fade"  [id]="'exampleModal2' + note.id"  tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel2">{{note.title}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          {{note.content}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
