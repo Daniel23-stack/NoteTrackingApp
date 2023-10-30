@@ -18,6 +18,9 @@
 </nav>
 <div class="container">
     <h2 class="text-center">Notes</h2>
+  <div *ngIf="!hasNotes" class="alert alert-warning text-center">
+    No notes, please create a note.
+  </div>
   <hr>
 </div>
 <section class="mt-4">
@@ -32,7 +35,6 @@
       </tr >
       </thead>
       <tbody >
-
       <tr *ngFor="let note of notes">
         <th scope="row">{{note.id}}</th>
         <td>{{note.title}}</td>

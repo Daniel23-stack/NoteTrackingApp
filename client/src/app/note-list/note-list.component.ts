@@ -12,6 +12,7 @@ import {GoogleDriveService} from "../services/google-drive.service";
 export class NoteListComponent implements OnInit {
   notes: Note[] = [];
   newNote: Note = { title: '', content: '' };
+  hasNotes: boolean = false;
 
 
   selectedNote: Note | null = null;
@@ -19,11 +20,13 @@ export class NoteListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadNotes()
+  }
+  loadNotes(){
     this.noteService.getAllNotes().subscribe(notes => {
       this.notes = notes;
-
+      this.hasNotes = this.notes.length > 0;
     });
-
   }
   onSaveToDrive(): void {
     if (this.newNote.title && this.newNote.content) {
